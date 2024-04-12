@@ -29,6 +29,8 @@ namespace laziiMenu.Menu
                 new ButtonInfo { buttonText = "Tag Gun", method =() => tagGun.TagGun(), toolTip = "Tags the player you had is pointed at"},
                 new ButtonInfo { buttonText = "Monke Gun", method =() => MonkeGun.monkeGun(), toolTip = "Moves your monke to the targeted spot"},
                 new ButtonInfo { buttonText = "Vibrate Gun", method =() => VibrateGun.vibrateGun(), toolTip = "Vibrates the controller of the targeted player"},
+                new ButtonInfo { buttonText = "Grab Gliders", method =() => GliderMods.GrabGliders(), toolTip = "Grabs the gliders"},
+                new ButtonInfo { buttonText = "Glider Gun", method =() => GliderMods.GliderGun(), toolTip = "Brings all gliders wherever you want"},
             },
 
             new ButtonInfo[] { // Settings

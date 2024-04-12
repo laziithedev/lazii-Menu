@@ -186,6 +186,16 @@ while using this, please report it to the discord server.";
 
         // Functions
 
+        public static GliderHoldable[] archiveholdables = null;
+        public static GliderHoldable[] GetGliders()
+        {
+            if (archiveholdables == null)
+            {
+                archiveholdables = UnityEngine.Object.FindObjectsOfType<GliderHoldable>();
+            }
+            return archiveholdables;
+        }
+
         public static void ChangeColor(Color color)
         {
             if (PhotonNetwork.InRoom)
