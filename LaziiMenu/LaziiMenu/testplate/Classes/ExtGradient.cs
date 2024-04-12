@@ -7,9 +7,11 @@ namespace laziiMenu.Classes
     {
         public GradientColorKey[] colors = new GradientColorKey[]
         {
-            new GradientColorKey(Color.black, 0f),
-            new GradientColorKey(Color.magenta, 0.5f),
-            new GradientColorKey(Color.black, 1f)
+
+    new GradientColorKey(new Color(0.5f, 0f, 0.5f), 0f), // Dark purple at the start
+    new GradientColorKey(Color.black, 0.5f), // Black in the middle
+    new GradientColorKey(new Color(0.5f, 0f, 0.5f), 1f) // Dark purple at the end
+
         };
 
         public bool isRainbow = false;
