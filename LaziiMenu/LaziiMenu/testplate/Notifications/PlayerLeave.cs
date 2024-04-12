@@ -3,9 +3,9 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.IO;
 using UnityEngine;
-using static laziiMenu.Menu.Main;
+using static EclipseMenu.Menu.Main;
 
-namespace laziiMenu.Notifications
+namespace EclipseMenu.Notifications
 {
     [HarmonyPatch(typeof(MonoBehaviourPunCallbacks), "OnPlayerLeftRoom")]
     internal class LeavePatch : MonoBehaviour

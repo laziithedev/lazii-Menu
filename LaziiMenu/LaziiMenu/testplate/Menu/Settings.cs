@@ -1,8 +1,8 @@
-﻿using laziiMenu.Classes;
+﻿using EclipseMenu.Classes;
 using UnityEngine;
-using static laziiMenu.Menu.Main;
+using static EclipseMenu.Menu.Main;
 
-namespace laziiMenu.Menu
+namespace EclipseMenu.Menu
 {
     internal class Settings
     {

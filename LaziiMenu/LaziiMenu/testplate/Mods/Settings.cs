@@ -1,7 +1,7 @@
-﻿using static laziiMenu.Menu.Main;
-using static laziiMenu.Menu.Settings;
+﻿using static EclipseMenu.Menu.Main;
+using static EclipseMenu.Menu.Settings;
 
-namespace laziiMenu.Mods
+namespace EclipseMenu.Mods
 {
     internal class SettingsMods
     {

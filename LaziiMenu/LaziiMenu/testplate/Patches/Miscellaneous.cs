@@ -3,7 +3,7 @@ using Photon.Pun;
 using UnityEngine;
 using System;
 
-namespace laziiMenu.Patches
+namespace EclipseMenu.Patches
 {
     [HarmonyPatch(typeof(GorillaNot), "SendReport")]
     internal class AntiCheat : MonoBehaviour

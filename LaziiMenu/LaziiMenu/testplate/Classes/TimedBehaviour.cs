@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-namespace laziiMenu.Classes
+namespace EclipseMenu.Classes
 {
     public class TimedBehaviour : MonoBehaviour
     {

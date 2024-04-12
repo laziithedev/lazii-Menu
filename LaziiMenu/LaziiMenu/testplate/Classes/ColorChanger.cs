@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace laziiMenu.Classes
+namespace EclipseMenu.Classes
 {
     public class ColorChanger : TimedBehaviour
     {
@@ -18,12 +18,13 @@ namespace laziiMenu.Classes
             {
                 if (!colorInfo.copyRigColors)
                 {
-                    Color color = new Gradient { colorKeys = colorInfo.colors }.Evaluate(Time.time / 2f % 1);
-                    if (colorInfo.isRainbow)
-                    {
-                        float h = Time.frameCount / 180f % 1f;
-                        color = Color.HSVToRGB(h, 1f, 1f);
-                    }
+                    // Calculate the time for the gradient
+                    float time = Time.time / 2f % 1;
+
+                    // Get the color from the gradient
+                    Color color = new Gradient { colorKeys = colorInfo.colors }.Evaluate(time);
+
+                    // Set the color
                     renderer.material.color = color;
                 }
                 else

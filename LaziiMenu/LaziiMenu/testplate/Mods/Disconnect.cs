@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace laziiMenu.Mods
+namespace EclipseMenu.Mods
 {
     internal class Disconnect
     {

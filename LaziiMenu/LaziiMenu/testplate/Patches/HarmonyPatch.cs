@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
+using EclipseMenu;
 using HarmonyLib;
-using laziiMenu;
 using UnityEngine;
 
-namespace laziiMenu.Patches
+namespace EclipseMenu.Patches
 {
     public class Menu : MonoBehaviour
     {

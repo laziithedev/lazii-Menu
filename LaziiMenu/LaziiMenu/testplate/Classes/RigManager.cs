@@ -4,7 +4,7 @@ using BepInEx;
 using HarmonyLib;
 using UnityEngine;
 
-namespace laziiMenu.Classes
+namespace EclipseMenu.Classes
 {
     internal class RigManager : BaseUnityPlugin
     {
@@ -13,10 +13,10 @@ namespace laziiMenu.Classes
             return GorillaGameManager.instance.FindPlayerVRRig(p);
         }
 
-        public static Photon.Realtime.Player GetPlayerFromNetPlayer(NetPlayer p)
+        public static Player GetPlayerFromNetPlayer(NetPlayer p)
         {
-            Photon.Realtime.Player found = null;
-            foreach (Photon.Realtime.Player target in PhotonNetwork.PlayerList)
+            Player found = null;
+            foreach (Player target in PhotonNetwork.PlayerList)
             {
                 if (target.UserId == p.UserId)
                 {

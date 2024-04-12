@@ -2,9 +2,6 @@
 using ExitGames.Client.Photon;
 using GorillaNetworking;
 using HarmonyLib;
-using laziiMenu;
-using laziiMenu.Notifications;
-using laziiMenu.Mods;
 using Oculus.Platform;
 using Photon.Pun;
 using Photon.Realtime;
@@ -19,13 +16,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.XR;
-using static laziiMenu.Menu.Buttons;
-using static laziiMenu.Menu.Settings;
-using laziiMenu.Classes;
-using static laziiMenu.Mods.RPCProt;
-using static laziiMenu.Classes.ColorChangerRain;
+using static EclipseMenu.Menu.Buttons;
+using static EclipseMenu.Menu.Settings;
+using static EclipseMenu.Mods.RPCProt;
+using static EclipseMenu.Classes.ColorChangerRain;
+using EclipseMenu;
+using EclipseMenu.Classes;
+using EclipseMenu.Notifications;
 
-namespace laziiMenu.Menu
+namespace EclipseMenu.Menu
 {
     [HarmonyPatch(typeof(GorillaLocomotion.Player))]
     [HarmonyPatch("LateUpdate", MethodType.Normal)]
@@ -55,12 +54,12 @@ namespace laziiMenu.Menu
             }
             catch (Exception exception)
             {
-                UnityEngine.Debug.LogError(string.Format("Eclipse <b>COLOR ERROR</b> {1} - {0}", exception.Message, exception.StackTrace));
+                Debug.LogError(string.Format("Eclipse <b>COLOR ERROR</b> {1} - {0}", exception.Message, exception.StackTrace));
             }
 
             try
             {
-                OrangeUI.color = UnityEngine.Color.black;
+                OrangeUI.color = Color.black;
 
                 GameObject motdText = GameObject.Find("Environment Objects/LocalObjects_Prefab/TreeRoom/TreeRoomInteractables/UI/motd");
                 Text motdTC = motdText.GetComponent<Text>();
@@ -80,7 +79,7 @@ namespace laziiMenu.Menu
                 motdTextB.fontSize = 60;
                 motdTextB.font = activeFont;
                 motdTextB.color = textColor;
-                motdTextB.horizontalOverflow = UnityEngine.HorizontalWrapMode.Overflow;
+                motdTextB.horizontalOverflow = HorizontalWrapMode.Overflow;
                 transformation.sizeDelta = new Vector2(583.6444f, 486.2244f);
                 transformation.localScale = new Vector3(0.2281f, 0.2281f, 0.2281f);
                 motdTextB.text = @"
@@ -100,7 +99,7 @@ while using this, please report it to the discord server.";
             // Initialize Menu
             try
             {
-                bool toOpen = (!rightHanded && ControllerInputPoller.instance.leftControllerSecondaryButton) || (rightHanded && ControllerInputPoller.instance.rightControllerSecondaryButton);
+                bool toOpen = !rightHanded && ControllerInputPoller.instance.leftControllerSecondaryButton || rightHanded && ControllerInputPoller.instance.rightControllerSecondaryButton;
                 bool keyboardOpen = UnityInput.Current.GetKey(keyboardButton);
 
                 if (menu == null)
@@ -117,7 +116,7 @@ while using this, please report it to the discord server.";
                 }
                 else
                 {
-                    if ((toOpen || keyboardOpen))
+                    if (toOpen || keyboardOpen)
                     {
                         RecenterMenu(rightHanded, keyboardOpen);
                     }
@@ -133,17 +132,17 @@ while using this, please report it to the discord server.";
                             comp.velocity = GorillaLocomotion.Player.Instance.leftHandCenterVelocityTracker.GetAverageVelocity(true, 0);
                         }
 
-                        UnityEngine.Object.Destroy(menu, 2);
+                        Destroy(menu, 2);
                         menu = null;
 
-                        UnityEngine.Object.Destroy(reference);
+                        Destroy(reference);
                         reference = null;
                     }
                 }
             }
             catch (Exception exc)
             {
-                UnityEngine.Debug.LogError(string.Format("{0} // Error initializing at {1}: {2}", PluginInfo.Name, exc.StackTrace, exc.Message));
+                Debug.LogError(string.Format("{0} // Error initializing at {1}: {2}", PluginInfo.Name, exc.StackTrace, exc.Message));
             }
 
             // Constant
@@ -171,7 +170,7 @@ while using this, please report it to the discord server.";
                                 }
                                 catch (Exception exc)
                                 {
-                                    UnityEngine.Debug.LogError(string.Format("{0} // Error with mod {1} at {2}: {3}", PluginInfo.Name, v.buttonText, exc.StackTrace, exc.Message));
+                                    Debug.LogError(string.Format("{0} // Error with mod {1} at {2}: {3}", PluginInfo.Name, v.buttonText, exc.StackTrace, exc.Message));
                                 }
                             }
                         }
@@ -180,7 +179,7 @@ while using this, please report it to the discord server.";
             }
             catch (Exception exc)
             {
-                UnityEngine.Debug.LogError(string.Format("{0} // Error with executing mods at {1}: {2}", PluginInfo.Name, exc.StackTrace, exc.Message));
+                Debug.LogError(string.Format("{0} // Error with executing mods at {1}: {2}", PluginInfo.Name, exc.StackTrace, exc.Message));
             }
         }
 
@@ -191,7 +190,7 @@ while using this, please report it to the discord server.";
         {
             if (archiveholdables == null)
             {
-                archiveholdables = UnityEngine.Object.FindObjectsOfType<GliderHoldable>();
+                archiveholdables = FindObjectsOfType<GliderHoldable>();
             }
             return archiveholdables;
         }
@@ -236,7 +235,7 @@ while using this, please report it to the discord server.";
             }
         }
 
-        
+
 
         public static void ChangeName(string PlayerName)
         {
@@ -277,7 +276,7 @@ while using this, please report it to the discord server.";
             }
             catch (Exception exception)
             {
-                UnityEngine.Debug.LogError(string.Format("Eclipse <b>NAME ERROR</b> {1} - {0}", exception.Message, exception.StackTrace));
+                Debug.LogError(string.Format("Eclipse <b>NAME ERROR</b> {1} - {0}", exception.Message, exception.StackTrace));
             }
         }
 
@@ -287,15 +286,15 @@ while using this, please report it to the discord server.";
         {
             // Menu Holder
             menu = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            UnityEngine.Object.Destroy(menu.GetComponent<Rigidbody>());
-            UnityEngine.Object.Destroy(menu.GetComponent<BoxCollider>());
-            UnityEngine.Object.Destroy(menu.GetComponent<Renderer>());
+            Destroy(menu.GetComponent<Rigidbody>());
+            Destroy(menu.GetComponent<BoxCollider>());
+            Destroy(menu.GetComponent<Renderer>());
             menu.transform.localScale = new Vector3(0.1f, 0.3f, 0.3825f);
 
             // Menu Background
             menuBackground = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            UnityEngine.Object.Destroy(menuBackground.GetComponent<Rigidbody>());
-            UnityEngine.Object.Destroy(menuBackground.GetComponent<BoxCollider>());
+            Destroy(menuBackground.GetComponent<Rigidbody>());
+            Destroy(menuBackground.GetComponent<BoxCollider>());
             menuBackground.transform.parent = menu.transform;
             menuBackground.transform.rotation = Quaternion.identity;
             menuBackground.transform.localScale = menuSize;
@@ -354,7 +353,7 @@ while using this, please report it to the discord server.";
                 fpsObject.supportRichText = true;
                 fpsObject.fontStyle = FontStyle.Italic;
                 fpsObject.alignment = TextAnchor.MiddleCenter;
-                fpsObject.horizontalOverflow = UnityEngine.HorizontalWrapMode.Overflow;
+                fpsObject.horizontalOverflow = HorizontalWrapMode.Overflow;
                 fpsObject.resizeTextForBestFit = true;
                 fpsObject.resizeTextMinSize = 0;
                 RectTransform component2 = fpsObject.GetComponent<RectTransform>();
@@ -373,7 +372,7 @@ while using this, please report it to the discord server.";
                 {
                     disconnectbutton.layer = 2;
                 }
-                UnityEngine.Object.Destroy(disconnectbutton.GetComponent<Rigidbody>());
+                Destroy(disconnectbutton.GetComponent<Rigidbody>());
                 disconnectbutton.GetComponent<BoxCollider>().isTrigger = true;
                 disconnectbutton.transform.parent = menu.transform;
                 disconnectbutton.transform.rotation = Quaternion.identity;
@@ -414,7 +413,7 @@ while using this, please report it to the discord server.";
             {
                 gameObject.layer = 2;
             }
-            UnityEngine.Object.Destroy(gameObject.GetComponent<Rigidbody>());
+            Destroy(gameObject.GetComponent<Rigidbody>());
             gameObject.GetComponent<BoxCollider>().isTrigger = true;
             gameObject.transform.parent = menu.transform;
             gameObject.transform.rotation = Quaternion.identity;
@@ -452,7 +451,7 @@ while using this, please report it to the discord server.";
             {
                 gameObject.layer = 2;
             }
-            UnityEngine.Object.Destroy(gameObject.GetComponent<Rigidbody>());
+            Destroy(gameObject.GetComponent<Rigidbody>());
             gameObject.GetComponent<BoxCollider>().isTrigger = true;
             gameObject.transform.parent = menu.transform;
             gameObject.transform.rotation = Quaternion.identity;
@@ -500,7 +499,7 @@ while using this, please report it to the discord server.";
             {
                 gameObject.layer = 2;
             }
-            UnityEngine.Object.Destroy(gameObject.GetComponent<Rigidbody>());
+            Destroy(gameObject.GetComponent<Rigidbody>());
             gameObject.GetComponent<BoxCollider>().isTrigger = true;
             gameObject.transform.parent = menu.transform;
             gameObject.transform.rotation = Quaternion.identity;
@@ -557,7 +556,7 @@ while using this, please report it to the discord server.";
         {
             if (menu != null)
             {
-                UnityEngine.Object.Destroy(menu);
+                Destroy(menu);
                 menu = null;
 
                 CreateMenu();
@@ -597,9 +596,9 @@ while using this, please report it to the discord server.";
                     bg.transform.localScale = new Vector3(10f, 10f, 0.01f);
                     bg.transform.transform.position = TPC.transform.position + TPC.transform.forward;
                     bg.GetComponent<Renderer>().material.color = new Color32((byte)(backgroundColor.colors[0].color.r * 50), (byte)(backgroundColor.colors[0].color.g * 50), (byte)(backgroundColor.colors[0].color.b * 50), 255);
-                    GameObject.Destroy(bg, Time.deltaTime);
+                    Destroy(bg, Time.deltaTime);
                     menu.transform.parent = TPC.transform;
-                    menu.transform.position = (TPC.transform.position + (Vector3.Scale(TPC.transform.forward, new Vector3(0.5f, 0.5f, 0.5f)))) + (Vector3.Scale(TPC.transform.up, new Vector3(-0.02f, -0.02f, -0.02f)));
+                    menu.transform.position = TPC.transform.position + Vector3.Scale(TPC.transform.forward, new Vector3(0.5f, 0.5f, 0.5f)) + Vector3.Scale(TPC.transform.up, new Vector3(-0.02f, -0.02f, -0.02f));
                     Vector3 rot = TPC.transform.rotation.eulerAngles;
                     rot = new Vector3(rot.x - 90, rot.y + 90, rot.z);
                     menu.transform.rotation = Quaternion.Euler(rot);
@@ -652,7 +651,7 @@ while using this, please report it to the discord server.";
 
         public static void Toggle(string buttonText)
         {
-            int lastPage = ((buttons[buttonsType].Length + buttonsPerPage - 1) / buttonsPerPage) - 1;
+            int lastPage = (buttons[buttonsType].Length + buttonsPerPage - 1) / buttonsPerPage - 1;
             if (buttonText == "PreviousPage")
             {
                 pageNumber--;
@@ -707,7 +706,7 @@ while using this, please report it to the discord server.";
                     }
                     else
                     {
-                        UnityEngine.Debug.LogError(buttonText + " does not exist");
+                        Debug.LogError(buttonText + " does not exist");
                     }
                 }
             }
@@ -721,7 +720,7 @@ while using this, please report it to the discord server.";
 
         public static ButtonInfo GetIndex(string buttonText)
         {
-            foreach (ButtonInfo[] buttons in Menu.Buttons.buttons)
+            foreach (ButtonInfo[] buttons in buttons)
             {
                 foreach (ButtonInfo button in buttons)
                 {
@@ -735,7 +734,7 @@ while using this, please report it to the discord server.";
             return null;
         }
 
-        
+
 
         // Variables
         // Important
@@ -770,7 +769,7 @@ while using this, please report it to the discord server.";
         public static bool isJoiningRandom = false;
         public static float jrDebounce = 0f;
         public static float internetFloat = 3f;
-        public static float h = ((Time.frameCount / 180f) + offset) % 1f;
+        public static float h = (Time.frameCount / 180f + offset) % 1f;
         public static float offset;
         public static Font agency = Font.CreateDynamicFontFromOSFont("Agency FB", 24);
         public static Font activeFont = agency;

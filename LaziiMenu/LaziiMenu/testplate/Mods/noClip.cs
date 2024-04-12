@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine.XR;
 using UnityEngine;
 
-namespace laziiMenu.Mods
+namespace EclipseMenu.Mods
 {
     internal class noClip
     {

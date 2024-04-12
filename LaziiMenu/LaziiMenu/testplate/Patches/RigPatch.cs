@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 using UnityEngine;
 
-namespace laziiMenu.Patches
+namespace EclipseMenu.Patches
 {
     [HarmonyPatch(typeof(VRRig), "OnDisable")]
     internal class GhostPatch : MonoBehaviour

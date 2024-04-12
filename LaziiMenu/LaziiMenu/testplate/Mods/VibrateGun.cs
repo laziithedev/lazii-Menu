@@ -4,12 +4,12 @@ using System.Text;
 using UnityEngine;
 using Oculus;
 using GorillaTag;
-using laziiMenu.Notifications;
+using EclipseMenu.Notifications;
 using Photon.Pun;
 using static NetworkSystem;
 using ExitGames.Client.Photon;
 using GorillaNetworking;
-using laziiMenu.Notifications;
+using EclipseMenu.Notifications;
 using Photon.Pun;
 using Photon.Realtime;
 using PlayFab.ClientModels;
@@ -26,12 +26,12 @@ using GorillaTag;
 using HarmonyLib;
 using System.Reflection;
 using UnityEngine.InputSystem.LowLevel;
-using static laziiMenu.Menu.Main;
-using static laziiMenu.Classes.RigManager;
-using static laziiMenu.Mods.RPCProt;
+using static EclipseMenu.Menu.Main;
+using static EclipseMenu.Classes.RigManager;
+using static EclipseMenu.Mods.RPCProt;
 using UnityEngine.InputSystem;
 
-namespace laziiMenu.Mods
+namespace EclipseMenu.Mods
 {
     internal class VibrateGun
     {

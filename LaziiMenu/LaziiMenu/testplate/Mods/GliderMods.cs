@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using static laziiMenu.Menu.Main;
+using static EclipseMenu.Menu.Main;
 using ExitGames.Client.Photon;
 using GorillaLocomotion.Gameplay;
 using GorillaTag;
 using GorillaTag.Cosmetics;
 using HarmonyLib;
-using laziiMenu.Notifications;
+using EclipseMenu.Notifications;
 using Photon.Pun;
 using Photon.Realtime;
 using Photon.Voice.Unity.UtilityScripts;
@@ -19,7 +19,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace laziiMenu.Mods
+namespace EclipseMenu.Mods
 {
     internal class GliderMods
     {

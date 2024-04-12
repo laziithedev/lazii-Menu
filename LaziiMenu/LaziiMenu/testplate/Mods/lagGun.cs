@@ -1,6 +1,5 @@
 ﻿using ExitGames.Client.Photon;
 using GorillaNetworking;
-using laziiMenu.Notifications;
 using Photon.Pun;
 using Photon.Realtime;
 using PlayFab.ClientModels;
@@ -17,11 +16,12 @@ using GorillaTag;
 using HarmonyLib;
 using System.Reflection;
 using UnityEngine.InputSystem.LowLevel;
-using static laziiMenu.Menu.Main;
-using static laziiMenu.Classes.RigManager;
-using static laziiMenu.Mods.RPCProt;
+using static EclipseMenu.Menu.Main;
+using static EclipseMenu.Classes.RigManager;
+using static EclipseMenu.Mods.RPCProt;
+using EclipseMenu.Notifications;
 
-namespace laziiMenu.Mods
+namespace EclipseMenu.Mods
 {
     internal class lagGun
     {
@@ -40,10 +40,10 @@ namespace laziiMenu.Mods
                 NewPointer.GetComponent<Renderer>().material.color = Color.red;
                 NewPointer.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
                 NewPointer.transform.position = Ray.point;
-                UnityEngine.Object.Destroy(NewPointer.GetComponent<BoxCollider>());
-                UnityEngine.Object.Destroy(NewPointer.GetComponent<Rigidbody>());
-                UnityEngine.Object.Destroy(NewPointer.GetComponent<Collider>());
-                UnityEngine.Object.Destroy(NewPointer, Time.deltaTime);
+                Object.Destroy(NewPointer.GetComponent<BoxCollider>());
+                Object.Destroy(NewPointer.GetComponent<Rigidbody>());
+                Object.Destroy(NewPointer.GetComponent<Collider>());
+                Object.Destroy(NewPointer, Time.deltaTime);
                 if (isCopying && whoCopy != null)
                 {
                     if (PhotonNetwork.LocalPlayer.IsMasterClient)
@@ -53,10 +53,11 @@ namespace laziiMenu.Mods
                             new Vector2(0.3f, 0.3f),
                             2f,
                             10f,
-                            PhotonNetwork.InRoom ? PhotonNetwork.Time : ((double)Time.time)
+                            PhotonNetwork.InRoom ? PhotonNetwork.Time : (double)Time.time
                         });
                         RPCProtection();
-                    } else
+                    }
+                    else
                     {
                         NotifiLib.SendNotification("<color=grey>[</color><color=red>ERROR</color><color=grey>]</color> <color=white>You are not master.</color>");
                     }
@@ -70,7 +71,7 @@ namespace laziiMenu.Mods
                         whoCopy = possibly;
                     }
                 }
-            
+
 
             }
             else

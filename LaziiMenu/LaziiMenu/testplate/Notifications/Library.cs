@@ -3,9 +3,9 @@ using System.Linq;
 using BepInEx;
 using UnityEngine;
 using UnityEngine.UI;
-using static laziiMenu.Menu.Settings;
+using static EclipseMenu.Menu.Settings;
 
-namespace laziiMenu.Notifications
+namespace EclipseMenu.Notifications
 {
     [BepInPlugin("org.gorillatag.lars.notifications2", "NotificationLibrary", "1.0.5")]
     public class NotifiLib : BaseUnityPlugin

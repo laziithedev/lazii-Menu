@@ -6,10 +6,10 @@ using System.Text;
 using UnityEngine;
 using ExitGames.Client.Photon;
 using System.Diagnostics;
-using static laziiMenu.Menu.Main;
-using static laziiMenu.Mods.Reconnect;
+using static EclipseMenu.Menu.Main;
+using static EclipseMenu.Mods.Reconnect;
 
-namespace laziiMenu.Mods
+namespace EclipseMenu.Mods
 {
     internal class joinRandom
     {
@@ -68,4 +68,4 @@ namespace laziiMenu.Mods
         }
     }
 }
-        
+

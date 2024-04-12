@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-using static laziiMenu.Menu.Buttons;
+using static EclipseMenu.Menu.Buttons;
 
-namespace laziiMenu.Mods
+namespace EclipseMenu.Mods
 {
     internal class longArms
     {

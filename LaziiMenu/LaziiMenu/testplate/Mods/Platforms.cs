@@ -8,14 +8,13 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
-using laziiMenu.Menu;
-using static laziiMenu.Menu.Main;
+using static EclipseMenu.Menu.Main;
 using GorillaTag;
 using System.ComponentModel.Design;
 using static UnityEngine.Object;
-using laziiMenu.Classes;
+using EclipseMenu.Classes;
 
-namespace laziiMenu.Mods
+namespace EclipseMenu.Mods
 {
     internal class Platforms
     {
@@ -52,7 +51,7 @@ namespace laziiMenu.Mods
                 {
                     if (platl != null)
                     {
-                        UnityEngine.Object.Destroy(platl);
+                        Destroy(platl);
                         platl = null;
                     }
                 }
@@ -83,17 +82,16 @@ namespace laziiMenu.Mods
                 {
                     if (platr != null)
                     {
-                        UnityEngine.Object.Destroy(platr);
+                        Destroy(platr);
                         platr = null;
                     }
                 }
             }
         }
+
+
+
+
     }
-
-          
-
-
-
-        }
+}
 

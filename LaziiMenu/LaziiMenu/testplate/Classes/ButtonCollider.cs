@@ -1,9 +1,9 @@
 using Photon.Pun;
 using UnityEngine;
-using static laziiMenu.Menu.Main;
-using static laziiMenu.Menu.Settings;
+using static EclipseMenu.Menu.Main;
+using static EclipseMenu.Menu.Settings;
 
-namespace laziiMenu.Classes
+namespace EclipseMenu.Classes
 {
     internal class Button : MonoBehaviour
     {

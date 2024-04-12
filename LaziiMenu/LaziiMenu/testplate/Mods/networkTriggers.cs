@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-namespace laziiMenu.Mods
+namespace EclipseMenu.Mods
 {
     internal class networkTriggers
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace laziiMenu.Mods
+namespace EclipseMenu.Mods
 {
     internal class headSpaz
     {
@@ -19,6 +19,6 @@ namespace laziiMenu.Mods
             GorillaTagger.Instance.offlineVRRig.head.trackingRotationOffset.y = 0f;
             GorillaTagger.Instance.offlineVRRig.head.trackingRotationOffset.z = 0f;
         }
-        
+
     }
 }

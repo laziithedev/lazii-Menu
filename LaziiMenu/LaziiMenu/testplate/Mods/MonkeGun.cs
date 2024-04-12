@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine;
 using ExitGames.Client.Photon;
 using GorillaNetworking;
-using laziiMenu.Notifications;
+using EclipseMenu.Notifications;
 using Photon.Realtime;
 using PlayFab.ClientModels;
 using PlayFab;
@@ -17,12 +17,11 @@ using GorillaTag;
 using HarmonyLib;
 using System.Reflection;
 using UnityEngine.InputSystem.LowLevel;
-using static laziiMenu.Menu.Main;
-using static laziiMenu.Classes.RigManager;
-using static laziiMenu.Mods.RPCProt;
-using laziiMenu.Classes;
+using static EclipseMenu.Menu.Main;
+using static EclipseMenu.Classes.RigManager;
+using static EclipseMenu.Mods.RPCProt;
 
-namespace laziiMenu.Mods
+namespace EclipseMenu.Mods
 {
     internal class MonkeGun
     {
@@ -49,8 +48,8 @@ namespace laziiMenu.Mods
                 {
                     if (PhotonNetwork.LocalPlayer.IsMasterClient)
                     {
-                        if(rightTrigger > 0.5f || Mouse.current.leftButton.isPressed)
-                {
+                        if (rightTrigger > 0.5f || Mouse.current.leftButton.isPressed)
+                        {
                             GorillaTagger.Instance.offlineVRRig.enabled = false;
                             GorillaTagger.Instance.offlineVRRig.transform.position = NewPointer.transform.position + new Vector3(0, 1, 0);
                             GorillaTagger.Instance.myVRRig.transform.position = NewPointer.transform.position + new Vector3(0, 1, 0);
@@ -69,13 +68,13 @@ namespace laziiMenu.Mods
                             r.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                             r.transform.position = GorillaTagger.Instance.rightHandTransform.position;
 
-                            l.GetComponent<Renderer>().material.color = new Color(0,255,0,0);
-                            r.GetComponent<Renderer>().material.color = new Color(255,0,0,0);
+                            l.GetComponent<Renderer>().material.color = new Color(0, 255, 0, 0);
+                            r.GetComponent<Renderer>().material.color = new Color(255, 0, 0, 0);
 
                             UnityEngine.Object.Destroy(l, Time.deltaTime);
                             UnityEngine.Object.Destroy(r, Time.deltaTime);
                         }
-                else
+                        else
                         {
                             GorillaTagger.Instance.offlineVRRig.enabled = true;
                         }
@@ -85,6 +84,6 @@ namespace laziiMenu.Mods
 
             }
         }
-    
+
     }
 }

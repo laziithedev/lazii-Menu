@@ -1,8 +1,8 @@
-﻿using laziiMenu.Classes;
-using laziiMenu.Mods;
-using static laziiMenu.Menu.Settings;
+﻿using EclipseMenu.Classes;
+using EclipseMenu.Mods;
+using static EclipseMenu.Menu.Settings;
 
-namespace laziiMenu.Menu
+namespace EclipseMenu.Menu
 {
     internal class Buttons
     {

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace laziiMenu.Mods
+namespace EclipseMenu.Mods
 {
     internal class RPCProt
     {
@@ -16,10 +16,10 @@ namespace laziiMenu.Mods
                 GorillaNot.instance.logErrorMax = int.MaxValue;
                 PhotonNetwork.RemoveRPCs(PhotonNetwork.LocalPlayer);
                 PhotonNetwork.OpCleanRpcBuffer(GorillaTagger.Instance.myVRRig);
-                PhotonNetwork.RemoveBufferedRPCs(GorillaTagger.Instance.myVRRig.ViewID, (string)null, (int[])null);
+                PhotonNetwork.RemoveBufferedRPCs(GorillaTagger.Instance.myVRRig.ViewID, null, null);
                 PhotonNetwork.RemoveRPCsInGroup(int.MaxValue);
                 PhotonNetwork.SendAllOutgoingCommands();
-                ((MonoBehaviourPunCallbacks)GorillaNot.instance).OnPlayerLeftRoom(PhotonNetwork.LocalPlayer);
+                GorillaNot.instance.OnPlayerLeftRoom(PhotonNetwork.LocalPlayer);
             }
         }
 

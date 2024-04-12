@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-namespace laziiMenu.Mods
+namespace EclipseMenu.Mods
 {
     internal class FPSBoost
     {
@@ -15,7 +15,7 @@ namespace laziiMenu.Mods
         public static void FPSboostOff()
         {
             QualitySettings.globalTextureMipmapLimit = 1;
-        }   
+        }
 
     }
 }

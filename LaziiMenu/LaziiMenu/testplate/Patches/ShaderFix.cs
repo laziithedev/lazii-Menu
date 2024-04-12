@@ -2,7 +2,7 @@
 using HarmonyLib;
 using UnityEngine;
 
-namespace laziiMenu.Patches
+namespace EclipseMenu.Patches
 {
     [HarmonyPatch(typeof(GameObject))]
     [HarmonyPatch("CreatePrimitive", 0)]

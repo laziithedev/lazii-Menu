@@ -1,6 +1,6 @@
-﻿using static laziiMenu.Menu.Main;
+﻿using static EclipseMenu.Menu.Main;
 
-namespace laziiMenu.Mods
+namespace EclipseMenu.Mods
 {
     internal class Global
     {

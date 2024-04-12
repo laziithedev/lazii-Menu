@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using BepInEx;
-using static laziiMenu.Classes.RigManager;
+using static EclipseMenu.Classes.RigManager;
 
-namespace laziiMenu.Mods
+namespace EclipseMenu.Mods
 {
     internal class stareAtNear
     {

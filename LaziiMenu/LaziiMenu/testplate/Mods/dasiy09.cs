@@ -1,17 +1,17 @@
 ﻿using GorillaLocomotion.Gameplay;
 using GorillaTag;
 using HarmonyLib;
-using laziiMenu.Notifications;
+using EclipseMenu.Notifications;
 using Photon.Pun;
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static laziiMenu.Classes.RigManager;
-using static laziiMenu.Menu.Main;
-using static laziiMenu.Mods.RPCProt;
+using static EclipseMenu.Classes.RigManager;
+using static EclipseMenu.Menu.Main;
+using static EclipseMenu.Mods.RPCProt;
 
 
-namespace laziiMenu.Mods
+namespace EclipseMenu.Mods
 {
     internal class dasiy09
     {

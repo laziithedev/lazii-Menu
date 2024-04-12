@@ -1,7 +1,8 @@
 ﻿using BepInEx;
+using EclipseMenu;
 using System.ComponentModel;
 
-namespace laziiMenu.Patches
+namespace EclipseMenu.Patches
 {
     [Description(PluginInfo.Description)]
     [BepInPlugin(PluginInfo.GUID, PluginInfo.Name, PluginInfo.Version)]

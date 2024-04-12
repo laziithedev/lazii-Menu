@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace laziiMenu.Classes
+namespace EclipseMenu.Classes
 {
     public class ButtonInfo
     {
