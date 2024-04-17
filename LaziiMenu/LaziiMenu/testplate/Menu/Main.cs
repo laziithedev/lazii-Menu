@@ -95,6 +95,7 @@ while using this, please report it to the discord server.";
             rightgrip = ControllerInputPoller.instance.rightGrab || UnityInput.Current.GetKey(KeyCode.RightBracket);
             leftTrigger = ControllerInputPoller.TriggerFloat(XRNode.LeftHand);
             rightTrigger = ControllerInputPoller.TriggerFloat(XRNode.RightHand);
+            RightJoystick = ControllerInputPoller.instance.rightControllerPrimary2DAxis;
             shouldBePC = UnityInput.Current.GetKey(KeyCode.E) || UnityInput.Current.GetKey(KeyCode.R) || UnityInput.Current.GetKey(KeyCode.F) || UnityInput.Current.GetKey(KeyCode.G) || UnityInput.Current.GetKey(KeyCode.LeftBracket) || UnityInput.Current.GetKey(KeyCode.RightBracket) || UnityInput.Current.GetKey(KeyCode.Minus) || UnityInput.Current.GetKey(KeyCode.Equals) || Mouse.current.leftButton.isPressed || Mouse.current.rightButton.isPressed;
             // Initialize Menu
             try
@@ -751,6 +752,7 @@ while using this, please report it to the discord server.";
         public static GameObject rightplatform = null;
         public static bool leftgrip = false;
         public static bool rightgrip = false;
+        public static Vector2 RightJoystick;
         public static float leftTrigger = 0f;
         public static float rightTrigger = 0f;
         public static bool plastLeftGrip = false;

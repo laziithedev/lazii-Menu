@@ -31,6 +31,11 @@ namespace EclipseMenu.Menu
                 new ButtonInfo { buttonText = "Vibrate Gun", method =() => VibrateGun.vibrateGun(), toolTip = "Vibrates the controller of the targeted player"},
                 new ButtonInfo { buttonText = "Grab Gliders", method =() => GliderMods.GrabGliders(), toolTip = "Grabs the gliders"},
                 new ButtonInfo { buttonText = "Glider Gun", method =() => GliderMods.GliderGun(), toolTip = "Brings all gliders wherever you want"},
+                new ButtonInfo { buttonText = "Accept TOS", method =() => AcceptTOS.AcceptTOSM(), toolTip = "Accepts The TOS"},
+                new ButtonInfo { buttonText = "Punch Mod", method =() => PunchMod.GaimingPunchMod(), toolTip = "Lets Others Punch you"},
+                new ButtonInfo { buttonText = "Fast Swimmer", method =() => Movement.FasterSwimming(), toolTip = "Makes you an olympic swimmer"},
+                new ButtonInfo { buttonText = "Zero Gravity", method =() => Movement.ZeroGravity(), disableMethod =() => Movement.ResetGravity(), toolTip = "Turns off Gravity"},
+                new ButtonInfo { buttonText = "Wallwalk", method =() => Movement.WallWalk(), toolTip = "Lets you walk on Walls"},
             },
 
             new ButtonInfo[] { // Settings

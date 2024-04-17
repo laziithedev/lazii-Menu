@@ -1,127 +1,102 @@
-﻿using BepInEx;
+﻿using BepInEx.Configuration;
+using Steamworks;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using UnityEngine;
+using static EclipseMenu.Menu.Main;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using BepInEx;
+using BepInEx.Configuration;
 using ExitGames.Client.Photon;
+using GorillaLocomotion;
+using GorillaLocomotion.Gameplay;
+using HarmonyLib;
 using Photon.Pun;
 using Photon.Realtime;
-using System;
-using System.Linq;
-using System.Reflection;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.XR;
-using static EclipseMenu.Menu.Main;
-using GorillaTag;
-using System.ComponentModel.Design;
-using static UnityEngine.Object;
-using EclipseMenu.Classes;
-using Steamworks;
-using BepInEx.Configuration;
-using System.Collections.Generic;
 
 namespace EclipseMenu.Mods
 {
-    internal class Platforms
+    internal class Movement
     {
-        public static Color PlatColorA = new Color32(0, 255, 0, 255);
-        public static Color PlatColorB = new Color32(0, 255, 100, 255);
-
-        public static GameObject platl;
-        public static GameObject platr;
-
-        public static void PlatformMod()
+        public static void FasterSwimming()
         {
-            RaiseEventOptions raiseEventOptions = new RaiseEventOptions
+            if (GorillaLocomotion.Player.Instance.InWater)
             {
-                Receivers = 0
-            };
-            if (rightgrip)
-            {
-                if (Platforms.RightPlat == null)
-                {
-                    rightplatform = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    if (Platforms.currentPlatform != 2)
-                    {
-                        Platforms.RightPlat.transform.position = new Vector3(0f, -0.0175f, 0f) + GorillaLocomotion.Player.Instance.rightControllerTransform.position;
-                    }
-                    else
-                    {
-                        Platforms.RightPlat.transform.position = new Vector3(0f, 0.025f, 0f) + GorillaLocomotion.Player.Instance.rightControllerTransform.position;
-                    }
-                    Platforms.RightPlat.transform.rotation = GorillaLocomotion.Player.Instance.rightControllerTransform.rotation;
-                    Platforms.RightPlat.transform.localScale = Platforms.scale;
-                    if (Platforms.currentPlatform == 1)
-                    {
-                        if (Platforms.RightPlat.GetComponent<MeshRenderer>() != null)
-                        {
-                            UnityEngine.Object.Destroy(Platforms.RightPlat.GetComponent<MeshRenderer>());
-                        }
-                    }
-                    else
-                    {
-                        if (Platforms.RightPlat.GetComponent<MeshRenderer>() == null)
-                        {
-                            Platforms.RightPlat.AddComponent<MeshRenderer>();
-                        }
-                        Platforms.RightPlat.GetComponent<Renderer>().material.color = Color.black;
-                        PhotonNetwork.RaiseEvent(110, new object[]
-                        {
-                            Platforms.RightPlat.transform.position,
-                            Platforms.RightPlat.transform.rotation,
-                            Platforms.scale,
-                            Platforms.RightPlat.GetComponent<Renderer>().material.color
-                        }, raiseEventOptions, SendOptions.SendReliable);
-                    }
-                }
+                GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.velocity = GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.velocity * 1.013f;
             }
-            else if (Platforms.RightPlat != null)
+
+        }
+
+        public static void ZeroGravity()
+        {
+            Physics.gravity = new Vector3(0f, 0f, 0f);
+        }
+
+        public static void WallWalk()
+        {
+            Vector3 vector = default(Vector3);
+            if ((GorillaLocomotion.Player.Instance.wasLeftHandTouching || GorillaLocomotion.Player.Instance.wasRightHandTouching) && (leftgrip || rightgrip))
             {
-                PhotonNetwork.RaiseEvent(111, null, raiseEventOptions, SendOptions.SendReliable);
-                UnityEngine.Object.Destroy(Platforms.RightPlat);
-                Platforms.RightPlat = null;
+                vector = ((RaycastHit)typeof(GorillaLocomotion.Player).GetField("lastHitInfoHand", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(GorillaLocomotion.Player.Instance)).normal;
             }
-            if (leftgrip)
+            if (leftgrip || rightgrip)
             {
-                if (Platforms.LeftPlat == null)
-                {
-                    Platforms.LeftPlat = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    Platforms.LeftPlat.transform.localScale = Platforms.scale;
-                    if (Platforms.currentPlatform != 2)
-                    {
-                        Platforms.LeftPlat.transform.position = new Vector3(0f, -0.0175f, 0f) + GorillaLocomotion.Player.Instance.leftControllerTransform.position;
-                    }
-                    else
-                    {
-                        Platforms.LeftPlat.transform.position = new Vector3(0f, 0.025f, 0f) + GorillaLocomotion.Player.Instance.leftControllerTransform.position;
-                    }
-                    Platforms.LeftPlat.transform.rotation = GorillaLocomotion.Player.Instance.leftControllerTransform.rotation;
-                    if (Platforms.currentPlatform != 1)
-                    {
-                        if (Platforms.LeftPlat.GetComponent<MeshRenderer>() == null)
-                        {
-                            Platforms.LeftPlat.AddComponent<MeshRenderer>();
-                        }
-                        Platforms.LeftPlat.GetComponent<Renderer>().material.color = Color.black;
-                        PhotonNetwork.RaiseEvent(110, new object[]
-                        {
-                            Platforms.LeftPlat.transform.position,
-                            Platforms.LeftPlat.transform.rotation,
-                            Platforms.scale,
-                            Platforms.LeftPlat.GetComponent<Renderer>().material.color
-                        }, raiseEventOptions, SendOptions.SendReliable);
-                        return;
-                    }
-                    if (Platforms.LeftPlat.GetComponent<MeshRenderer>() != null)
-                    {
-                        UnityEngine.Object.Destroy(Platforms.LeftPlat.GetComponent<MeshRenderer>());
-                        return;
-                    }
-                }
+                GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.AddForce(vector * -5f * Movement.WallWalkMultiplier);
+                Physics.gravity = new Vector3(0f, 0f, 0f);
+                return;
             }
-            else if (Platforms.LeftPlat != null)
+            Physics.gravity = new Vector3(0f, -9.81f, 0f);
+        }
+
+        public static void ResetGravity()
+        {
+            Physics.gravity = new Vector3(0f, -9.81f, 0f);
+        }
+
+        public static float getWallWalkMultiplier()
+        {
+            return Movement.WallWalkMultiplier;
+        }
+
+        public static void SwitchWallWalk()
+        {
+            Movement.WallWalkMultiplier = Movement.multiplierManager(Movement.WallWalkMultiplier);
+        }
+
+        public static float multiplierManager(float currentSpeed)
+        {
+            float num = currentSpeed;
+            if (num == 1.15f)
             {
-                PhotonNetwork.RaiseEvent(121, null, raiseEventOptions, SendOptions.SendReliable);
-                UnityEngine.Object.Destroy(Platforms.LeftPlat);
-                Platforms.LeftPlat = null;
+                num = 1.3f;
             }
+            else if (num == 1.3f)
+            {
+                num = 1.5f;
+            }
+            else if (num == 1.5f)
+            {
+                num = 1.7f;
+            }
+            else if (num == 1.7f)
+            {
+                num = 2f;
+            }
+            else if (num == 2f)
+            {
+                num = 3f;
+            }
+            else if (num == 3f)
+            {
+                num = 1.15f;
+            }
+            return num;
         }
 
 
@@ -365,7 +340,5 @@ namespace EclipseMenu.Mods
             Vector3.zero
         };
 
-
     }
 }
-
